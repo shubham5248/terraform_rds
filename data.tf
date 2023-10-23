@@ -5,12 +5,13 @@ data "aws_vpc" "vpc_available" {
   }
 }
 data "aws_subnet_ids" "available_db_subnet" {
-  vpc_id = data.aws_vpc.vpc_available.id
+  vpc_id = aws_vpc.vpc_available.id
   filter {
     name   = "tag:Name"
     values = ["tcw_database*"]
   }
 }
+
 
 data "aws_availability_zones" "available" {
   state = "available"
